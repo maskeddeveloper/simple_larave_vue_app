@@ -9,7 +9,11 @@ class Notes extends Model
 {
     protected $table = "notes";
     public $timestamps = true;
-
+    /**
+     * The attributes that are mass assignable.
+     *
+     * @var array
+     */
     protected $fillable = [
 		'title','note'
 	];

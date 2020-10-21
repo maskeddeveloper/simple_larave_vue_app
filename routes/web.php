@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\NotesController;
 
 /*
 |--------------------------------------------------------------------------
@@ -22,7 +23,7 @@ Auth::routes();
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 
-Route::post('/storeNote','NotesController@storeNote');
-Route::get('/getNotes', 'NotesController@getNotes');
-Route::post('/deleteNote/{id}', 'NotesController@deleteNote');
-Route::post('/editNotes/{id}', 'NotesController@editNote');
+Route::post('/storeNote','App\Http\Controllers\NotesController@storeNote');
+Route::get('/getNotes', 'App\Http\Controllers\NotesController@getNotes');
+Route::post('/deleteNote/{id}', 'App\Http\Controllers\NotesController@deleteNote');
+Route::post('/editNotes/{id}', 'App\Http\Controllers\NotesController@editNote');
