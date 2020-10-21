@@ -20,3 +20,9 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+
+Route::post('/storeNote','NotesController@storeNote');
+Route::get('/getNotes', 'NotesController@getNotes');
+Route::post('/deleteNote/{id}', 'NotesController@deleteNote');
+Route::post('/editNotes/{id}', 'NotesController@editNote');

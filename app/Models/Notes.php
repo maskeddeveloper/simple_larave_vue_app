@@ -11,6 +11,6 @@ class Notes extends Model
     public $timestamps = true;
 
     protected $fillable = [
-		'title','model'
+		'title','note'
 	];
 }

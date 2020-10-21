@@ -29,4 +29,65 @@ Vue.component('example-component', require('./components/ExampleComponent.vue').
 
 const app = new Vue({
     el: '#app',
+    data: {
+        newCar: {'title': '', 'note': ''},
+        hasError: true,
+        notes: [],
+        e_id: '',
+        e_title: '',
+        e_note: '',
+    },
+    mounted: function mounted(){
+        this.getNotes();
+    },
+    methods: {
+        getNotes: function getNotes(){
+            var _this = this;
+            axios.get('/getNotes').then(function(response){
+                _this.notes = response.data;
+            }).catch(error=>{
+                console.log("Get All: "+error);
+            });
+        },
+        createNote: function createNote() {
+            var input = this.newNote;
+            var _this = this;
+            if(input['title'] == '' || input['note'] == '') {
+                this.hasError = false;
+            }
+            else {
+                this.hasError= true;
+                axios.post('/storeNote', input).then(function(response){
+                    _this.newCar = {'title': '', 'note': ''}
+                    _this.getNotes();
+                }).catch(error=>{
+                    console.log("Insert: "+error);
+                });
+            }
+        },
+        deleteNote: function deleteNote(note) {
+            var _this = this;
+            axios.post('/deleteNote/' + note.id).then(function(response){
+                _this.getNotes();
+            }).catch(error=>{
+                console.log("Delete note: "+error);
+            });
+        },
+        setVal(val_id, val_title, val_note) {
+            this.e_id = val_id;
+            this.e_title = val_title;
+            this.e_note = val_note;
+        },
+        editNote: function(){
+            var _this = this;
+            var id_val_1 = document.getElementById('e_id');
+            var title_val_1 = document.getElementById('e_title');
+            var note_val_1 = document.getElementById('e_note');
+            var model = document.getElementById('myModal').value;
+             axios.post('/editNotes/' + id_val_1.value, {val_1: title_val_1.value, val_2: note_val_1.value})
+               .then(response => {
+                 _this.getNotes();
+               });
+     },
+    }
 });
