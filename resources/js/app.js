@@ -19,10 +19,10 @@ import App from "./App.vue";
 // const files = require.context('./', true, /\.vue$/i)
 // files.keys().map(key => Vue.component(key.split('/').pop().split('.')[0], files(key).default))
 
-Vue.component('App', require('./App.vue').default);
-Vue.component('modal', {
-    template: '#modal-template'
-})
+// Vue.component('App', require('./App.vue').default);
+// Vue.component('modal', {
+//     template: '#modal-template'
+// })
 
 
 /**
@@ -34,8 +34,11 @@ Vue.component('modal', {
 
 const app = new Vue({
     el: '#app',
-    components: {
-        App
-    },
-    render: h => h(App),
+    template: "<App/>",
+    components: { App }
+
+    // components: {
+    //     App
+    // },
+    // render: h => h(App),
 });

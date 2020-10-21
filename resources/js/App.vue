@@ -52,9 +52,9 @@
         </thead>
         <tbody>
           <tr v-for="note in notes" v-bind:key="note.id">
-            <th scope="row">@{{ note.id }}</th>
-            <td>@{{ note.title }}</td>
-            <td>@{{ note.note }}</td>
+            <th scope="row">{{ note.id }}</th>
+            <td>{{ note.title }}</td>
+            <td>{{ note.note }}</td>
 
             <td
               @click="setVal(note.id, note.title, note.note)"
@@ -117,15 +117,18 @@
 </template>
 
 <script>
-export default {
-  data: {
-    newNote: { title: "", note: "" },
+module.exports = {
+
+  data: function(){
+   return { newNote: { title: "", note: "" },
     hasError: true,
     notes: [],
     e_id: "",
     e_title: "",
     e_note: "",
-  },
+    }
+  }
+,
   mounted: function mounted() {
     this.getNotes();
   },
